@@ -8,6 +8,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { todosReducer, ITodosState } from './todos/todos.reducer';
 import { TodosComponent } from './todos/todos.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TodosEffects } from './todos/todos.effects';
 
 export interface IState {
     todos: ITodosState;
@@ -23,6 +25,7 @@ export interface IState {
         AppRoutingModule,
         StoreModule.forRoot({ todos: todosReducer }),
         StoreDevtoolsModule.instrument({}),
+        EffectsModule.forRoot([TodosEffects]),
     ],
     providers: [],
     bootstrap: [AppComponent]

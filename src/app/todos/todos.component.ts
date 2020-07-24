@@ -15,14 +15,12 @@ import { Observable } from 'rxjs';
 export class TodosComponent implements OnInit {
     todos$: Observable<ITodo[]>;
 
-    constructor(private store: Store<IState>, private todosService: TodosService) {
+    constructor(private store: Store<IState>) {
         this.todos$ = store.select(selectAllTodos);
     }
 
     ngOnInit(): void {
-        this.todosService.getTodos().subscribe(todos => {
-            this.store.dispatch(getTodosSuccess({ todos }));
-        })
+        this.store.dispatch(getTodos());
     }
 
 }
