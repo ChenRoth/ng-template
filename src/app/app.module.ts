@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { todosReducer, ITodosState } from './todos/todos.reducer';
+import { TodosComponent } from './todos/todos.component';
 
 export interface IState {
     todos: ITodosState;
@@ -14,7 +15,8 @@ export interface IState {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        TodosComponent
     ],
     imports: [
         BrowserModule,

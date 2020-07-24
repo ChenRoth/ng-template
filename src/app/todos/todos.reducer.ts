@@ -1,4 +1,5 @@
-import { createReducer } from '@ngrx/store'
+import { createReducer, on } from '@ngrx/store'
+import { getTodos, getTodosSuccess } from './todos.actions';
 
 export interface ITodo {
     id: number;
@@ -7,8 +8,17 @@ export interface ITodo {
     isComplete: boolean;
 }
 
-export type ITodosState = ITodo[];
+export interface ITodosState {
+    items: ITodo[];
+    isLoading: boolean;
+};
 
-const initialState: ITodosState = [];
+const initialState: ITodosState = {
+    items: [],
+    isLoading: false,
+};
 
-export const todosReducer = createReducer<ITodosState>(initialState);
+export const todosReducer = createReducer<ITodosState>(initialState,
+    on(getTodos, state => ({ ...state, isLoading: true })),
+    on(getTodosSuccess, (state, { todos }) => ({ ...state, isLoading: false, items: todos }))
+);
