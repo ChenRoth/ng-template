@@ -1,19 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeTodoServerService } from './fake-todo-server.service';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
-import { todosReducer, ITodosState } from './todos/todos.reducer';
-import { TodosComponent } from './todos/todos.component';
-import { EffectsModule } from '@ngrx/effects';
-import { TodosEffects } from './todos/todos.effects';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AddTodoComponent } from './add-todo/add-todo.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FakeTodoServerService } from './fake-todo-server.service';
+import { TodosComponent } from './todos/todos.component';
+import { TodosEffects } from './todos/todos.effects';
+import { ITodosState, todosReducer } from './todos/todos.reducer';
+
+
 
 export interface IState {
     todos: ITodosState;
@@ -28,6 +29,7 @@ export interface IState {
     imports: [
         BrowserModule,
         AppRoutingModule,
+        FormsModule,
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(
             FakeTodoServerService, { dataEncapsulation: false }
