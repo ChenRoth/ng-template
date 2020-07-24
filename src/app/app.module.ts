@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FakeTodoServerService } from './fake-todo-server.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +26,10 @@ export interface IState {
     imports: [
         BrowserModule,
         AppRoutingModule,
+        HttpClientModule,
+        HttpClientInMemoryWebApiModule.forRoot(
+            FakeTodoServerService, { dataEncapsulation: false }
+        ),
         StoreModule.forRoot({ todos: todosReducer }),
         StoreDevtoolsModule.instrument({}),
         EffectsModule.forRoot([TodosEffects]),
