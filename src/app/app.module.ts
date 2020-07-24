@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { todosReducer, ITodosState } from './reducers/todos.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { todosReducer, ITodosState } from './todos/todos.reducer';
 
 export interface IState {
     todos: ITodosState;
@@ -18,6 +20,7 @@ export interface IState {
         BrowserModule,
         AppRoutingModule,
         StoreModule.forRoot({ todos: todosReducer }),
+        StoreDevtoolsModule.instrument({}),
     ],
     providers: [],
     bootstrap: [AppComponent]
