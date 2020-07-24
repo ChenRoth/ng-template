@@ -13,6 +13,7 @@ import { todosReducer, ITodosState } from './todos/todos.reducer';
 import { TodosComponent } from './todos/todos.component';
 import { EffectsModule } from '@ngrx/effects';
 import { TodosEffects } from './todos/todos.effects';
+import { AddTodoComponent } from './add-todo/add-todo.component';
 
 export interface IState {
     todos: ITodosState;
@@ -21,7 +22,8 @@ export interface IState {
 @NgModule({
     declarations: [
         AppComponent,
-        TodosComponent
+        TodosComponent,
+        AddTodoComponent
     ],
     imports: [
         BrowserModule,

@@ -13,4 +13,8 @@ export class TodosService {
     getTodos(): Observable<ITodo[]> {
         return this.http.get<ITodo[]>('/api/todos');
     }
+
+    addTodo(todoRequest: Omit<ITodo, 'id' | 'isComplete'>) {
+        return this.http.post<ITodo>('/api/todos', { ...todoRequest, isComplete: false });
+    }
 }
